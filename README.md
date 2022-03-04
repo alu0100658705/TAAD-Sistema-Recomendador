@@ -59,6 +59,20 @@ Los resultados se vuelcan en la estructura descrita anteriormente y se llama a l
 Los resultados se guardan en un <i>dataframe</i> con los valores para cada par de documentos.
 
 #### 5. Implementación de clase
+<ul>
+  <li>Se emplea nuevamente el método Countvectorizer() para hallar el número total de palabras en cada documento. Los resultados se añaden a un dataframe. Se define un valor “N” que representa el número total de documentos en la colección.</li>
+<li>Se itera sobre cada uno de los documentos, y sobre cada término en cada documento.</li>
+<li>Se halla el valor normalizado de la frecuencia de término mediante los valores del dataframe generado en el punto 1.</li>
+</li>Se calcula el número de documentos en los que aparece el término  que se está iterando (ni) para determinar el valor del logaritmo del valor de “N” entre ni. El valor resultante representa la frecuencia inversa del documento para cada término.</li>
+<li>Se multiplica directamente el valor de la frecuencia de término por la frecuencia inversa del documento y se obtiene el valor final del TF-IDF.</li>
+<li>Todos estos valores se añaden a la estructura definida para la representación de los resultados.</li>
+<li>Los valores del TF-IDF  se añaden a un nuevo dataframe para calcular posteriormente la similitud del coseno.</li>
+<li>La similitud del coseno se obtiene aplicando el método cosine_similarity, de la misma forma en la que se calculó para la implementación mediante Sklearn.</li> 
+</ul>
+El código en el programa correspondiente a esta parte es el siguiente:
+
+![image](https://user-images.githubusercontent.com/43812499/156837370-dcf3ae29-29f9-4b5e-a74b-700c7016b960.png)
+
 
 #### 6. Ejemplo de uso
 Se ejecuta el software con el documento de ejemplo definido en el enunciado del proyecto:
@@ -67,8 +81,10 @@ Se ejecuta el software con el documento de ejemplo definido en el enunciado del 
 
 El programa realizará todos los cálculos y mostrará un menú para visualizar los resultados obtenidos:
 
+![image](https://user-images.githubusercontent.com/43812499/156836539-7d4d1c2d-3e57-4f64-b090-b3bf869557a9.png)
 
 Las dos primeras opciones mostrarán los resultados obtenidos directamente en la terminal, la tercera opción guardará todos los resultados en un fichero. En la salida se listan todos los documentos: para cada documento se imprime una tabla con los resultados obtenidos para cada término, mostrando los índices en los que aparece el término, el valor de su frecuencia, el valor de la frecuencia inversa del documento y el valor del producto de estos dos (el valor normalizado en el caso de Sklearn). 
 
+Justo debajo aparecerá una nueva tabla con la relación de los resultados de la similitud del coseno entre cada par de documentos. Un ejemplo de salida en consola puede ser el siguiente:
 
-![image](https://user-images.githubusercontent.com/43812499/156628779-bb8d040b-bb1e-4ca4-b3c7-4034f950e8a3.png)
+![image](https://user-images.githubusercontent.com/43812499/156836731-f48cb397-3d6e-47f6-a408-dd2faeae4aad.png)
